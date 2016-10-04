@@ -1,0 +1,32 @@
+[
+ {
+   "Fname": "Billy",
+   "Lname": "Bob",
+   "ID": 12345678,
+  "CourseNumbers": [ 260, 101, 270 ]
+ },
+ {
+   "Fname": "Jimbo",
+   "Lname": "Jones",
+   "ID": 87654321,
+  "CourseNumbers": [ 270, 102, 311 ]
+ },
+ {
+   "Fname": "Vinny",
+   "Lname": "Vici",
+   "ID": 45612378,
+  "CourseNumbers": [ 301, 210 ]
+ },
+ {
+   "Fname": "Ronnie",
+   "Lname": "Ronaldo",
+   "ID": 32198745,
+  "CourseNumbers": [ 0, 102 ]
+ },
+ {
+   "Fname": "Adam",
+   "Lname": "Applesauce",
+   "ID": 78965412,
+  "CourseNumbers": [ 311, 300 ]
+ }
+]

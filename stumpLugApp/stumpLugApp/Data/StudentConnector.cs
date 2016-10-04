@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace stumpLugApp.Data
 {
-    class StudentArgs
+    public static class StudentConnector
     {
+        /*public static Student GenerateStudent(int studentID)
+        {
+             
+        }*/
     }
 }
