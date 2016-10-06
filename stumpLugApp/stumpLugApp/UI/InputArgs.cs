@@ -8,6 +8,13 @@ namespace stumpLugApp.UI
 {
     public class InputArgs
     {
+        private string m_input = String.Empty;
+        public string input
+        {
+            get { return m_input; }
+            set { m_input = value; }
+        }
+
         private ConsoleKeyInfo m_keyInfo = new ConsoleKeyInfo();
         public ConsoleKeyInfo KeyInfo
         {
@@ -40,7 +47,5 @@ namespace stumpLugApp.UI
         {
             get { return (KeyInfo.Modifiers & ConsoleModifiers.Control) != 0; }
         }
-
-
     }
 }

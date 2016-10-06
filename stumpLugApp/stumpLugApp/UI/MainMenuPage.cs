@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static stumpLugApp.UI.PageManager;
 
 namespace stumpLugApp.UI
 {
@@ -11,9 +12,9 @@ namespace stumpLugApp.UI
         public override void OnLoad()
         {
             pageTitle = "Main Menu";
-            commands.AddRange(new List<commandsEnum> { commandsEnum.Exit, commandsEnum.SearchStudent, commandsEnum.SearchCourse });
+            commands.AddRange(new List<commandsEnum> { commandsEnum.SearchStudent, commandsEnum.SearchCourse, commandsEnum.Exit });
             content = "Enter an option: ";
-
+            Console.CursorVisible = false;
             base.OnLoad();
         }
     }

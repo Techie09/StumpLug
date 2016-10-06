@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\MainMenuPage.cs" />
     <Compile Include="UI\SearchCoursePage.cs" />
+    <Compile Include="UI\SearchPage.cs" />
     <Compile Include="UI\SearchStudentPage.cs" />
   </ItemGroup>
   <ItemGroup>

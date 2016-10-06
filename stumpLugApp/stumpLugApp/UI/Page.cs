@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static stumpLugApp.UI.PageManager;
 
 namespace stumpLugApp.UI
 {
@@ -32,29 +33,20 @@ namespace stumpLugApp.UI
             set { m_content = value; }
         }
 
-        public enum commandsEnum
+        public virtual void Init()
         {
-            Exit,
-            MainMenu,
-            SearchStudent,
-            SearchCourse,
+
         }
 
-        private Dictionary<commandsEnum, string> m_commandsDict;
-        public Dictionary<commandsEnum, string> commandsDict
-        {
-            get { return m_commandsDict; }
-            set { m_commandsDict = value; }
-        }
-
-        // Basic formatting for when we change pages.
         public virtual void OnLoad()
         {
-            commandsDict = new Dictionary<commandsEnum, string>();
-            commandsDict.Add(commandsEnum.Exit, "[Alt+X]Exit");
-            commandsDict.Add(commandsEnum.MainMenu, "[Alt+M]Main Menu");
-            commandsDict.Add(commandsEnum.SearchStudent, "[Shift+S]Student Search");
-            commandsDict.Add(commandsEnum.SearchCourse, "[Shift+C]Course  Search");
+
+        }
+
+        public virtual void ToScreen(bool clearScreen = true)
+        {
+            if (clearScreen)
+                Console.Clear();
 
             Console.Title = String.Format("{0} | {1}", appTitle, pageTitle);
             Console.WriteLine(horzRule);
@@ -63,14 +55,19 @@ namespace stumpLugApp.UI
             foreach (commandsEnum c in commands)
             {
                 if (c != commands.Last())
-                    Console.Write(String.Format("{0} | ", commandsDict[c]));
+                    Console.Write(String.Format("{0} | ", PageManager.CommandText(c)));
                 else
-                    Console.WriteLine(commandsDict[c]);
+                    Console.WriteLine(PageManager.CommandText(c));
             }
             Console.WriteLine(horzRule);
-            Console.WriteLine(content);
+            Console.Write(content);
 
-            HandleInput();
+            PageManager.Refresh();
+        }
+
+        public virtual bool canRefreshPage
+        {
+            get { return true; }
         }
 
         public virtual void NavigateTo(Page page, bool clearScreen = true)
@@ -82,50 +79,19 @@ namespace stumpLugApp.UI
             }
         }
 
-        public virtual InputArgs GetInput()
+        public virtual void HandleInput(InputArgs input)
         {
-            InputArgs args = new InputArgs();
-            args.KeyInfo = Console.ReadKey();
-            return args;
-        }
 
-        public virtual void HandleInput()
-        {
-            //Put code which determines allowed commands here.
-            InputArgs input = GetInput();
-            if (commands.Contains(commandsEnum.Exit) && input.isAltKeyPressed && input.Key == ConsoleKey.X) { onClosing(); }
-            if (commands.Contains(commandsEnum.MainMenu) && input.isAltKeyPressed && input.Key == ConsoleKey.M) { NavigateTo(new MainMenuPage()); }
-            if (commands.Contains(commandsEnum.SearchStudent) && input.isShiftKeyPressed && input.Key == ConsoleKey.S) { NavigateTo(new SearchStudentPage()); }
-            if (commands.Contains(commandsEnum.SearchCourse) && input.isShiftKeyPressed && input.Key == ConsoleKey.C) { NavigateTo(new SearchCoursePage()); }
-            else NavigateTo(this);
         }
 
         public virtual void onClosing()
         {
-
-            Console.WriteLine();
-            if (ExitPrompt())
-            {
-                Environment.Exit(0);
-            }
-            else NavigateTo(this);
         }
 
         public virtual bool OnClose()
         {
             commands = new List<commandsEnum>();
             return true;
-        }
-
-        public bool ExitPrompt()
-        {
-            Console.Write("Are you sure you want to exit? (y/n): ");
-            ConsoleKey input = Console.ReadKey().Key;
-            if (input == ConsoleKey.Y)
-            {
-                return true;
-            }
-            return false;
         }
 
     }

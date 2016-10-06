@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static stumpLugApp.UI.PageManager;
 
 namespace stumpLugApp.UI
 {
-    class SearchCoursePage : Page
+    class SearchCoursePage : SearchPage
     {
         public override void OnLoad()
         {
             pageTitle = "Course Search";
-            commands = new List<commandsEnum>() { commandsEnum.Exit, commandsEnum.MainMenu };
             content = "Search for a Course: ";
-
             base.OnLoad();
+        }
+
+        public override void DisplayResults()
+        {
+            content = String.Format("Found Course: {0}", searchInput);
+            base.DisplayResults();
         }
     }
 }
