@@ -8,13 +8,13 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StumpLugApp</RootNamespace>
-    <AssemblyName>StumpLug</AssemblyName>
+    <AssemblyName>STARS</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>STARS_0_2_0_0\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,7 +27,7 @@
     <ProductName>Student Academic Record Service</ProductName>
     <PublisherName>StumpLug</PublisherName>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
+    <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -55,19 +55,28 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>88587B0050801E26F77A49BCF3AA1D83958D8A35</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>stumpLugApp_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>StumpLugApp.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>stumpLugApp_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,12 +89,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bus\Course.cs" />
+    <Compile Include="Bus\EnrolledCourse.cs" />
+    <Compile Include="Bus\Student.cs" />
     <Compile Include="UI\InputArgs.cs" />
+    <Compile Include="UI\MainMenuPage.cs" />
     <Compile Include="UI\Page.cs" />
     <Compile Include="UI\PageManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\MainMenuPage.cs" />
     <Compile Include="UI\SearchCoursePage.cs" />
     <Compile Include="UI\SearchPage.cs" />
     <Compile Include="UI\SearchStudentPage.cs" />
@@ -97,7 +109,6 @@
     <None Include="stumpLugApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Bus\" />
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
