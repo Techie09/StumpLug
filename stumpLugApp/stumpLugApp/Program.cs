@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using stumpLugApp.UI;
+using StumpLugApp.UI;
 
-namespace stumpLugApp
+namespace StumpLugApp
 {
     class Program
     {

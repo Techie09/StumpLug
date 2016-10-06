@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static stumpLugApp.UI.PageManager;
+using static StumpLugApp.UI.PageManager;
 
-namespace stumpLugApp.UI
+namespace StumpLugApp.UI
 {
     public class MainMenuPage : Page
     {
