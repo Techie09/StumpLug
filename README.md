@@ -1,5 +1,7 @@
 # STARS Release Notes Section
 Version 0.1.0.0
+
+
 ADDED[F4 Implement Navigation]: InputArgs: holds information about user input
 
 
