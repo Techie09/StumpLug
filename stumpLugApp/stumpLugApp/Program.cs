@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using stumpLugApp.Data;
+using StumpLugApp.UI;
 
-namespace stumpLugApp
+namespace StumpLugApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            ObjectCache.LoadObjectCache(); // Reads and deserializes the .json data which populates the course and student lists. 
+            Console.Title = "StumpLug - Student Academic Record Service";
+            PageManager.Load(new MainMenuPage());
         }
     }
 }
