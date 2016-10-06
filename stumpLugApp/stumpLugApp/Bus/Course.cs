@@ -1,121 +1,73 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
-namespace stumpLugApp.Bus
+namespace StumpLugApp.Bus
 {
-    public class Course
+    public partial class Course
     {
         private string m_id;
-        private string m_number;
-        private string m_name;
-        private int m_credits;
-        private int m_year;
-
         public string Id
         {
-            get
-            {
-                return m_id;
-            }
-            set
-            {
-                m_id = value;
-            }
+            get { return m_id; }
+            set { m_id = value; }
         }
+
+        private string m_number;
         public string Number
         {
-            get
-            {
-                return m_number;
-            }
-            set
-            {
-                m_number = value;
-            }
+            get { return m_number; }
+            set { m_number = value; }
         }
+
+        private string m_name;
         public string Name
         {
-            get
-            {
-                return m_name;
-            }
-            set
-            {
-                m_name = value;
-            }
+            get { return m_name; }
+            set { m_name = value; }
         }
+
+        private int m_credits;
         public int Credits
         {
-            get
-            {
-                return m_credits;
-            }
-            set
-            {
-                m_credits = value;
-            }
+            get { return m_credits; }
+            set { m_credits = value; }
         }
-        public int Year
-        {
-            get
-            {
-                return m_year;
-            }
-            set
-            {
-                m_year = value;
-            }
-        }
-    }
 
-    public class EnrolledCourse : Course
-    {
-        private Semester m_semester;
+
+
         private CourseType m_courseType;
-        private LetterGrade m_letterGrade;
-
-        public Semester Semester
-        {
-            get
-            {
-                return m_semester;
-            }
-            set
-            {
-                m_semester = value;
-            }
-        }
         public CourseType CourseType
         {
-            get
-            {
-                return m_courseType;
-            }
-            set
-            {
-                m_courseType = value;
-            }
+            get { return m_courseType; }
+            set { m_courseType = value; }
         }
-        public LetterGrade LetterGrade
-        {
-            get
-            {
-                return m_letterGrade;
-            }
-            set
-            {
-                m_letterGrade = value;
-            }
-        }
-    }
 
-    public enum Semester
-    {
-        [Description("fall")]
-        FALL,
-        [Description("spring")]
-        SPRING,
-        [Description("summer")]
-        SUMMER
+        /// <summary>
+        /// Takes a list of courses and returns a list in which all courses have a name, id, or number that contains the search string.
+        /// </summary>
+        /// <param name="coursesOriginal"></param>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        public static List<Course> SearchCoursesGeneral(List<Course> coursesOriginal, string search)
+        {
+            var studentsFound = coursesOriginal.Where(c => c.Name.Contains(search) || c.Id.Contains(search) || c.Number.Contains(search));
+
+            return studentsFound.ToList();
+        }
+
+        /// <summary>
+        /// Returns Course with specific matching id.
+        /// </summary>
+        /// <param name="courses"></param>
+        /// <param name="idFind"></param>
+        /// <returns></returns>
+        public static Course GetCourseById(List<Course> courses, string idFind)
+        {
+            Course course = courses.FirstOrDefault(c => c.Id == idFind);
+
+            return course;
+        }
     }
 
     public enum CourseType
@@ -126,10 +78,5 @@ namespace stumpLugApp.Bus
         GENED,
         [Description("elective")]
         ELECTIVE
-    }
-
-    public enum LetterGrade
-    {
-        A,B,C,D,F,I,W
     }
 }
