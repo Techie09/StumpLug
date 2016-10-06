@@ -61,6 +61,7 @@ namespace StumpLugApp.UI
 
         public static void Load(Page pageToLoad, bool clearScreen = true) // Sets clearScreen to true by default, so the argument is only needed when appending. 
         {
+            pageManager.inputString = new List<char>();
             if (clearScreen)
                 Console.Clear();
 
