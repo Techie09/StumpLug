@@ -40,34 +40,7 @@ namespace stumpLugApp.UI
         {
             get { return (KeyInfo.Modifiers & ConsoleModifiers.Control) != 0; }
         }
-        /*
-        private ConsoleKey m_actionKey; // char which determines the action [ Add, Create, Exit : A,C,X ]
-        private ConsoleKey m_typeKey; // char which determines the type [ Student, Course : S,C ]
 
-        public ConsoleKey ActionKey
-        {
-            get
-            {
-               return m_actionKey;
-            }
-            set
-            {
-                m_actionKey = value;
-            }
-        }
-        public ConsoleKey TypeKey
-        {
-            get
-            {
-                return m_typeKey;
-            }
-            set
-            {
-                m_typeKey = value;
-            }
-         
-        }
-        */
 
     }
 }

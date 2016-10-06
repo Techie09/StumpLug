@@ -11,7 +11,7 @@ namespace stumpLugApp
     {
         static void Main(string[] args)
         {
-            Console.TreatControlCAsInput = true; //We refuse to change
+            Console.Title = "StumpLug - Student Academic Record Service";
             PageManager.Load(new MainMenuPage());
         }
     }
