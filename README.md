@@ -11,6 +11,16 @@ added EnrolledCourses Object
 
 modified students.json to support enrolled courses
 
+B2: If typing fast enough letters still show up on main menu
+
+B3: When selecting students from multiple results if strings or characters are entered the system crashes
+
+B4: Certain courses don't have Course numbers and may show up multiple times
+
+B5: Error with semester year showing up as 0 
+
+B6: If selecting no when viewing student detail the user is able to search again without selecting the search again option(minor)
+
 Version 0.2.0.0
 
 ADDED[F2-Implement-Business-Objects]: Student: Student is now implemented
