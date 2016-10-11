@@ -11,15 +11,15 @@ ADDED[F3-Implement-Data-Layer] added EnrolledCourses Object
 
 MODIFIED[F3-Implement-Data-Layer] students.json to support enrolled courses
 
-B2: If typing fast enough letters still show up on main menu
+B1: If typing fast enough letters still show up on main menu
 
-B3: When selecting students from multiple results if strings or characters are entered the system crashes
+B2: When selecting students from multiple results if strings or characters are entered the system crashes
 
-B4: Certain courses don't have Course numbers and may show up multiple times
+B3: Certain courses don't have Course numbers and may show up multiple times
 
-B5: Error with semester year showing up as 0 
+B4: Error with semester year showing up as 0 
 
-B6: If selecting no when viewing student detail the user is able to search again without selecting the search again option(minor)
+B5: If selecting no when viewing student detail the user is able to search again without selecting the search again option(minor)
 
 Version 0.2.0.0
 
