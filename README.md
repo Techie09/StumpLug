@@ -1,7 +1,15 @@
 # STARS Release Notes Section
 Version 1.0.0.0
 
+Cleaned up Input handling
 
+added ViewStudentPage
+
+connected data and business objects
+
+added EnrolledCourses Object
+
+modified students.json to support enrolled courses
 
 Version 0.2.0.0
 
