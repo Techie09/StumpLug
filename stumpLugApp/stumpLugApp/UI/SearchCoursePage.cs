@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StumpLugApp.Bus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace StumpLugApp.UI
 {
     class SearchCoursePage : SearchPage
     {
+        private const string columnFormat = "{0,10}|{1}";
+
         public override void OnLoad()
         {
             pageTitle = "Course Search";
@@ -18,8 +21,16 @@ namespace StumpLugApp.UI
 
         public override void DisplayResults()
         {
-            content = String.Format("Found Course: {0}", searchInput);
-            base.DisplayResults();
+            StringBuilder contentBuilder = new StringBuilder();
+            contentBuilder.AppendLine(content);
+            contentBuilder.AppendLine(String.Format(columnFormat, "CourseID", "Name"));
+            var courses = Course.SearchCoursesGeneral(searchInput);
+            foreach (Course c in courses)
+            {
+                contentBuilder.AppendLine(String.Format(columnFormat, c.Id, c.Name));
+            }
+            Console.WriteLine(contentBuilder.ToString());
+            //base.DisplayResults();
         }
     }
 }

@@ -9,61 +9,43 @@ namespace StumpLugApp.UI
 {
     public abstract class SearchPage : Page
     {
-        private string m_searchInput = String.Empty;
-        public string searchInput
-        {
-            get { return m_searchInput; }
-            set { m_searchInput = value; }
-        }
-
-        private bool m_isSearching = false;
-        public bool isSearching
-        {
-            get { return m_isSearching; }
-        }
+        public string searchInput { get; set; }
 
         public override void OnLoad()
         {
-            Console.CursorVisible = true;
-            commands = new List<commandsEnum>() { commandsEnum.MainMenu, commandsEnum.Exit };
             base.OnLoad();
+            commands = new List<commandsEnum>() { };// { commandsEnum.MainMenu, commandsEnum.Exit };
+            Console.CursorVisible = true;
         }
 
-        public override void HandleInput(InputArgs inputArgs)
+        public override InputArgs HandleInput(InputArgs args)
         {
-            if (!String.IsNullOrEmpty(inputArgs.input))
+            args = base.HandleInput(args);
+            if (!String.IsNullOrEmpty(args.input))
             {
-                searchInput = inputArgs.input;
-                m_isSearching = true;
+                searchInput = args.input;
             }
-            else
-            {
-                m_isSearching = false;
-            }
+
+            return args;
         }
 
-        public override void ToScreen(bool clearScreen = true)
+        public override void Refresh()
         {
-            if (isSearching)
-            {
-                DisplayResults();
-            }
-            else
-                base.ToScreen();
-        }
+            searchInput = Console.ReadLine();
 
-        public override bool canRefreshPage
-        {
-            get { return isSearching; }
+            //Display Search Results
+            DisplayResults();
+
+            //Do a base Refresh to reset the screen properly.
+            base.Refresh();
         }
 
         public virtual void DisplayResults()
         {
-            pageTitle = "Search Results";
+            pageTitle = String.Format("{0}{1}", "Search Results for: ", searchInput);
             commands = new List<commandsEnum>() { commandsEnum.SearchAgain, commandsEnum.MainMenu, commandsEnum.Exit };
-            m_isSearching = false;
             Console.CursorVisible = false;
-            base.ToScreen();
+            base.ToScreen(canRefreshPage: false);
         }
     }
 }

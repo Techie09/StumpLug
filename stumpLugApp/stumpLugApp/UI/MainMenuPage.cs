@@ -11,11 +11,13 @@ namespace StumpLugApp.UI
     {
         public override void OnLoad()
         {
+            //Initializing some Page variables
+            base.OnLoad();
+
             pageTitle = "Main Menu";
-            commands.AddRange(new List<commandsEnum> { commandsEnum.SearchStudent, commandsEnum.SearchCourse, commandsEnum.Exit });
+            commands.AddRange(new List<commandsEnum> { commandsEnum.SearchStudent, commandsEnum.Exit });
             content = "Enter an option: ";
             Console.CursorVisible = false;
-            base.OnLoad();
         }
     }
 }

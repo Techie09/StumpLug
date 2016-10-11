@@ -24,8 +24,6 @@ namespace StumpLugApp.UI
             set { m_activePage = value; }
         }
 
-        private List<char> inputString; //stores a collection of char reads from console.In
-
         public enum commandsEnum
         {
             Exit,
@@ -50,8 +48,6 @@ namespace StumpLugApp.UI
             commandsDict.Add(commandsEnum.SearchStudent, "[Alt+S]Student Search");
             commandsDict.Add(commandsEnum.SearchCourse, "[Alt+C]Course Search");
             commandsDict.Add(commandsEnum.SearchAgain, "[Alt+A]Search Again");
-
-            inputString = new List<char>();
         }
 
         public static string CommandText(commandsEnum cmd)
@@ -63,24 +59,10 @@ namespace StumpLugApp.UI
         {
             if (clearScreen)
                 Console.Clear();
-
+            
             pageManager.activePage = pageToLoad;
-            pageManager.activePage.Init(); //setup variables
             pageManager.activePage.OnLoad(); //Call to output the newly loaded page.
             pageManager.activePage.ToScreen(); //Display stuff to the screen.
-        }
-
-        public static void Refresh()
-        {
-            //Get Input and process input
-            InputArgs args = GetInput();
-            pageManager.activePage.HandleInput(args);
-
-            if (!pageManager.activePage.canRefreshPage)
-                Refresh();
-
-            //output
-            pageManager.activePage.ToScreen();
         }
 
         public static bool PageContainsCommand(commandsEnum cmd)
@@ -88,23 +70,11 @@ namespace StumpLugApp.UI
             return pageManager.activePage.commands.Contains(cmd);
         }
 
-        public static InputArgs GetInput()
+        public static InputArgs GetInput(bool displayInput=true)
         {
             InputArgs args = new InputArgs();
-            args.KeyInfo = Console.ReadKey();
-            if (args.isAltKeyPressed)
-                HandleNavigationInput(args);
-
-            if (args.Key == ConsoleKey.Enter)
-            {
-                //send input with input args, clear inputString
-                args.input = String.Join(String.Empty, pageManager.inputString);
-                pageManager.inputString = new List<char>();
-            }
-            else
-            {
-                pageManager.inputString.Add(args.KeyInfo.KeyChar);
-            }
+            args.KeyInfo = Console.ReadKey(displayInput);
+                        
             return args;
         }
 
@@ -123,11 +93,9 @@ namespace StumpLugApp.UI
 
         public void Exit()
         {
-            Console.WriteLine();
             if (ExitPrompt())
-            {
                 Environment.Exit(0);
-            }
+
             else pageManager.activePage.ToScreen();
         }
 
@@ -136,9 +104,8 @@ namespace StumpLugApp.UI
             Console.Write("Are you sure you want to exit? (y/n): ");
             ConsoleKey input = Console.ReadKey().Key;
             if (input == ConsoleKey.Y)
-            {
                 return true;
-            }
+
             return false;
         }
     }

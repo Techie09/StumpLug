@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace stumpLugApp.Data
+namespace StumpLugApp.Data
 {
-    class CourseRoot
+    public class CourseArgs
     {
         public string DepartmentName { get; set; }
         public string CourseDescription { get; set; }
         public string CourseType { get; set; }
         public int CourseNumber { get; set; }
-        public int CreditHours { get; set; }
+        public string CreditHours { get; set; }
     }
 }
 

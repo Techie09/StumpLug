@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using StumpLugApp.Data;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
@@ -27,20 +28,23 @@ namespace StumpLugApp.Bus
             set { m_name = value; }
         }
 
-        private int m_credits;
-        public int Credits
+        private string m_credits;
+        public string Credits
         {
             get { return m_credits; }
             set { m_credits = value; }
         }
 
-
-
-        private CourseType m_courseType;
-        public CourseType CourseType
+        private string m_courseType;
+        public string CourseType
         {
             get { return m_courseType; }
             set { m_courseType = value; }
+        }
+
+        public Course(CourseArgs args)
+        {
+            Deserializer(args);
         }
 
         /// <summary>
@@ -49,9 +53,11 @@ namespace StumpLugApp.Bus
         /// <param name="coursesOriginal"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public static List<Course> SearchCoursesGeneral(List<Course> coursesOriginal, string search)
+        public static List<Course> SearchCoursesGeneral(string search)
         {
-            var studentsFound = coursesOriginal.Where(c => c.Name.Contains(search) || c.Id.Contains(search) || c.Number.Contains(search));
+            search = search.ToLower();
+            var courses = new Courses(ObjectCache.CourseRootList);
+            var studentsFound = courses.coursesList.Where(c => c.Name.ToLower().Contains(search) || c.Id.ToLower().Contains(search) || c.Number.ToLower().Contains(search));
 
             return studentsFound.ToList();
         }
@@ -62,11 +68,40 @@ namespace StumpLugApp.Bus
         /// <param name="courses"></param>
         /// <param name="idFind"></param>
         /// <returns></returns>
-        public static Course GetCourseById(List<Course> courses, string idFind)
+        public static Course GetCourseById(string idFind)
         {
-            Course course = courses.FirstOrDefault(c => c.Id == idFind);
+            var courses = new Courses(ObjectCache.CourseRootList);
+            Course course = courses.coursesList.FirstOrDefault(c => c.Id == idFind);
 
             return course;
+        }
+
+        public void Deserializer(CourseArgs data)
+        {
+            this.Id = string.Format("{0}-{1}",data.DepartmentName, data.CourseNumber);
+            this.Name = data.CourseDescription;
+            this.Number = data.CourseNumber.ToString();
+            this.CourseType = data.CourseType;
+            this.Credits = data.CreditHours;
+        }
+    }
+
+    public class Courses
+    {
+        private List<Course> m_coursesList;
+        public List<Course> coursesList
+        {
+            get { return m_coursesList; }
+            set { m_coursesList = value; }
+        }
+
+        public Courses(List<CourseArgs> args)
+        {
+            coursesList = new List<Course>();
+            foreach(CourseArgs data in args)
+            {
+                coursesList.Add(new Bus.Course(data));
+            }
         }
     }
 

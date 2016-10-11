@@ -6,36 +6,17 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace stumpLugApp.Data
+namespace StumpLugApp.Data
 {
-    static class ObjectCache
+    public static class ObjectCache
     {
-        private static List<CourseRoot> m_courseList;
-        private static List<StudentRoot> m_studentList;
-
-        public static List<CourseRoot> CourseList
+        public static List<CourseArgs> CourseRootList
         {
-            get
-            {
-                return m_courseList;
-            }
+            get { return JsonConvert.DeserializeObject<List<CourseArgs>>(File.ReadAllText("CourseData.json")); }
         }
-        public static List<StudentRoot> StudentList
+        public static List<StudentArgs> StudentRootList
         {
-            get
-            {
-                return m_studentList;
-            }
-        }
-
-        public static void LoadObjectCache()
-        {
-            string jsonCourses = File.ReadAllText("CourseData.json");
-            m_courseList = JsonConvert.DeserializeObject<List<CourseRoot>>(jsonCourses);
-
-            string jsonStudents = File.ReadAllText("students.json");
-            m_studentList = JsonConvert.DeserializeObject<List<StudentRoot>>(jsonStudents);
-            //deserialize the .json 
+            get { return JsonConvert.DeserializeObject<List<StudentArgs>>(File.ReadAllText("students.json")); }
         }
     }
 }

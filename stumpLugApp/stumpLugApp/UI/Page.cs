@@ -12,46 +12,32 @@ namespace StumpLugApp.UI
         protected const string appTitle = "StumpLug - Student Academic Record Service";
         protected const string horzRule = "----------------------------------------------------------------";
 
-        private string m_pageTitle = String.Empty;
-        public string pageTitle
-        {
-            get { return m_pageTitle; }
-            set { m_pageTitle = value; }
-        }
-
-        private List<commandsEnum> m_commands = new List<commandsEnum>();
-        public List<commandsEnum> commands
-        {
-            get { return m_commands; }
-            set { m_commands = value; }
-        }
-
-        private string m_content = String.Empty;
-        public string content
-        {
-            get { return m_content; }
-            set { m_content = value; }
-        }
-
-        public virtual void Init()
-        {
-
-        }
+        protected List<char> inputString; //stores a collection of char reads from console.In
+      
+        public string pageTitle { get; set; }
+        public List<commandsEnum> commands { get; set; }
+        
+        public string content { get; set; }
 
         public virtual void OnLoad()
         {
-
+            inputString = new List<char>();
+            commands = new List<commandsEnum>();
         }
 
-        public virtual void ToScreen(bool clearScreen = true)
+        public virtual void ToScreen(bool clearScreen = true, bool canRefreshPage = true)
         {
             if (clearScreen)
                 Console.Clear();
 
             Console.Title = String.Format("{0} | {1}", appTitle, pageTitle);
+
+            //Name of Page written to Console
             Console.WriteLine(horzRule);
             Console.WriteLine(pageTitle);
             Console.WriteLine(horzRule);
+
+            //write formatted commands to console
             foreach (commandsEnum c in commands)
             {
                 if (c != commands.Last())
@@ -59,15 +45,30 @@ namespace StumpLugApp.UI
                 else
                     Console.WriteLine(PageManager.CommandText(c));
             }
-            Console.WriteLine(horzRule);
+            if(commands.Count > 0)
+                Console.WriteLine(horzRule);
+
+            //write and basic content
             Console.Write(content);
 
-            PageManager.Refresh();
+            //toggle for pages designed for viewing
+            if(canRefreshPage)
+                Refresh();
         }
 
-        public virtual bool canRefreshPage
+        public virtual void Refresh()
         {
-            get { return true; }
+            //Get Input and process input
+            InputArgs args = GetInput(false);
+
+            //Navigate to a different page?
+            HandleNavigationInput(args);
+
+            //handle input normally
+            pageManager.activePage.HandleInput(args);
+
+            //output
+            pageManager.activePage.ToScreen();
         }
 
         public virtual void NavigateTo(Page page, bool clearScreen = true)
@@ -79,13 +80,20 @@ namespace StumpLugApp.UI
             }
         }
 
-        public virtual void HandleInput(InputArgs input)
+        public virtual InputArgs HandleInput(InputArgs args)
         {
+            if (args.Key == ConsoleKey.Enter)
+            {
+                //send input with input args, clear inputString
+                args.input = String.Join(String.Empty, inputString);
+                inputString = new List<char>();
+            }
+            else
+            {
+                inputString.Add(args.KeyInfo.KeyChar);
+            }
 
-        }
-
-        public virtual void onClosing()
-        {
+            return args;
         }
 
         public virtual bool OnClose()

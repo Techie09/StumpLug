@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StumpLugApp.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,27 +8,30 @@ using System.Threading.Tasks;
 
 namespace StumpLugApp.Bus
 {
-    public partial class EnrolledCourse : Course
+    public partial class EnrolledCourse
     {
-        private SemesterType m_semester;
-        public SemesterType Semester
+        private Course m_Info;
+        public Course Info
         {
-            get { return m_semester; }
-            set { m_semester = value; }
+            get { return m_Info; }
+            set { m_Info = value; }
         }
 
-        private int m_year;
-        public int Year
-        {
-            get { return m_year; }
-            set { m_year = value; }
-        }
+        public int CourseNumber { get; set; }
+        public SemesterType Semester { get; set; }
+        public int Year { get; set; }
+        public LetterGrade Grade { get; set; }
 
-        private LetterGrade m_grade;
-        public LetterGrade Grade
+        public EnrolledCourse(EnrolledCourseArgs args)
         {
-            get { return m_grade; }
-            set { m_grade = value; }
+            var cArgs = ObjectCache.CourseRootList.FirstOrDefault(c => c.CourseNumber == args.CourseID);
+            if (cArgs == null)
+                return;
+            Info = new Course(cArgs);
+            CourseNumber = args.CourseID;
+            Semester = (SemesterType)args.Semester;
+            Year = args.Year;
+            Semester = ParseSemester("spring");
         }
 
         public enum SemesterType
@@ -38,6 +42,15 @@ namespace StumpLugApp.Bus
             SPRING,
             [Description("Summer")]
             SUMMER
+        }
+
+        public SemesterType ParseSemester(string semesterName)
+        {
+            var semesterType = SemesterType.FALL;
+
+            var name = Enum.GetName(typeof(SemesterType), SemesterType.FALL);
+
+            return semesterType;
         }
 
         public enum LetterGrade

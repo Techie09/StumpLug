@@ -28,6 +28,13 @@ namespace StumpLugApp.UI
             }
         }
 
+        public InputArgs() { }
+
+        public InputArgs(ConsoleKeyInfo cki)
+        {
+            KeyInfo = cki;
+        }
+
         public ConsoleKey Key
         {
             get { return KeyInfo.Key; }
