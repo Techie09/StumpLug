@@ -3,13 +3,13 @@ Version 1.0.0.0
 
 Cleaned up Input handling
 
-added ViewStudentPage
+ADDED[F3-Implement-Data-Layer] ViewStudentPage
 
-connected data and business objects
+ADDED[F3-Implement-Data-Layer] connected data and business objects
 
-added EnrolledCourses Object
+ADDED[F3-Implement-Data-Layer] added EnrolledCourses Object
 
-modified students.json to support enrolled courses
+MODIFIED[F3-Implement-Data-Layer] students.json to support enrolled courses
 
 B2: If typing fast enough letters still show up on main menu
 
