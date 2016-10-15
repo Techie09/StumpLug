@@ -21,23 +21,23 @@ namespace StumpLugApp.UI
         {
             base.OnLoad();
 
-            string columnFormat = "{0,-12}|{1,-27}|{2,-10}|{3,-7}|{4,-5}|{5,-8}|{6,-4}{7}";
+            string columnFormat = "{0,-12}|{1,-27}|{2,-10}|{3,-7}|{4,-5}|{5,-8}|{6,-4}";
             pageTitle = String.Format("{0}{1},{2}", "Viewing Student: ", student.LastName, student.FirstName);
             StringBuilder contentBuilder = new StringBuilder();
-            contentBuilder.AppendFormat("StudentID| {0}{1}", student.IdFormatted, Environment.NewLine);
-            contentBuilder.AppendFormat("     Name| {0}{1}", String.Format("{0} {1}", student.FirstName, student.LastName), Environment.NewLine);
+            contentBuilder.AppendFormat("StudentID| {0}{1}", student.IdFormatted);
+            contentBuilder.AppendLineFormat("     Name| {0}{1}", String.Format("{0} {1}", student.FirstName, student.LastName));
             contentBuilder.AppendLine(horzRule);
             contentBuilder.AppendLine("Courses");
             contentBuilder.AppendLine(horzRule);
-            contentBuilder.AppendFormat(columnFormat, "CourseNumber", "CourseName", "CourseType", "Credits", "Grade", "Semester", "Year", Environment.NewLine);
-            foreach(EnrolledCourse ec in student.Courses)
+            contentBuilder.AppendLineFormat(columnFormat, "CourseNumber", "CourseName", "CourseType", "Credits", "Grade", "Semester", "Year");
+            foreach(EnrolledCourse enrolledCourse in student.Courses)
             {
-                Course c = new Course(ObjectCache.CourseRootList.FirstOrDefault(cs => cs.CourseNumber == ec.CourseNumber));
-                contentBuilder.AppendFormat(columnFormat, c.Number, c.Name , c.CourseType, c.Credits, ec.Grade, ec.Semester.ToString(), ec.Year, Environment.NewLine);
+                Course course = new Course(ObjectCache.CourseRootList.FirstOrDefault(cs => cs.CourseNumber == enrolledCourse.CourseNumber));
+                contentBuilder.AppendFormat(columnFormat, course.number, course.name , course.courseType, course.credits, enrolledCourse.Grade, enrolledCourse.Semester.ToString(), enrolledCourse.Year);
             }
             content = contentBuilder.ToString();
 
-            commands = new List<PageManager.commandsEnum> { PageManager.commandsEnum.SearchStudent, PageManager.commandsEnum.MainMenu, PageManager.commandsEnum.Exit };
+            commands = new List<CommandsEnum> { CommandsEnum.SearchStudent, CommandsEnum.MainMenu, CommandsEnum.Exit };
         }
     }
 }

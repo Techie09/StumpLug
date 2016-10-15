@@ -11,13 +11,20 @@ namespace StumpLugApp.UI
     {
         public string searchInput { get; set; }
 
+        /// <summary>
+        /// calls base.OnLoad() and sets cursor to visible
+        /// </summary>
         public override void OnLoad()
         {
             base.OnLoad();
-            commands = new List<commandsEnum>() { };// { commandsEnum.MainMenu, commandsEnum.Exit };
             Console.CursorVisible = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public override InputArgs HandleInput(InputArgs args)
         {
             args = base.HandleInput(args);
@@ -43,7 +50,7 @@ namespace StumpLugApp.UI
         public virtual void DisplayResults()
         {
             pageTitle = String.Format("{0}{1}", "Search Results for: ", searchInput);
-            commands = new List<commandsEnum>() { commandsEnum.SearchAgain, commandsEnum.MainMenu, commandsEnum.Exit };
+            commands = new List<CommandsEnum>() { CommandsEnum.SearchAgain, CommandsEnum.MainMenu, CommandsEnum.Exit };
             Console.CursorVisible = false;
             base.ToScreen(canRefreshPage: false);
         }

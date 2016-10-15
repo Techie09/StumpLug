@@ -15,7 +15,7 @@ namespace StumpLugApp.UI
             base.OnLoad();
 
             pageTitle = "Main Menu";
-            commands.AddRange(new List<commandsEnum> { commandsEnum.SearchStudent, commandsEnum.Exit });
+            commands.AddRange(new List<CommandsEnum> { CommandsEnum.SearchStudent, CommandsEnum.Exit });
             content = "Enter an option: ";
             Console.CursorVisible = false;
         }

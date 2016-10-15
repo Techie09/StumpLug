@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 
 namespace StumpLugApp.UI
@@ -24,17 +25,8 @@ namespace StumpLugApp.UI
             set { m_activePage = value; }
         }
 
-        public enum commandsEnum
-        {
-            Exit,
-            MainMenu,
-            SearchStudent,
-            SearchCourse,
-            SearchAgain
-        }
-
-        private Dictionary<commandsEnum, string> m_commandsDict;
-        public Dictionary<commandsEnum, string> commandsDict
+        private Dictionary<CommandsEnum, ConsoleKey> m_commandsDict;
+        public Dictionary<CommandsEnum, ConsoleKey> commandsDict
         {
             get { return m_commandsDict; }
             set { m_commandsDict = value; }
@@ -42,22 +34,50 @@ namespace StumpLugApp.UI
 
         private PageManager()
         {
-            commandsDict = new Dictionary<commandsEnum, string>();
-            commandsDict.Add(commandsEnum.Exit, "[Alt+X]Exit");
-            commandsDict.Add(commandsEnum.MainMenu, "[Alt+M]Main Menu");
-            commandsDict.Add(commandsEnum.SearchStudent, "[Alt+S]Student Search");
-            commandsDict.Add(commandsEnum.SearchCourse, "[Alt+C]Course Search");
-            commandsDict.Add(commandsEnum.SearchAgain, "[Alt+A]Search Again");
+            commandsDict = new Dictionary<CommandsEnum, ConsoleKey>();
+            AddCommand(CommandsEnum.Exit, ConsoleKey.X);
+            AddCommand(CommandsEnum.MainMenu, ConsoleKey.M);
+            AddCommand(CommandsEnum.SearchStudent, ConsoleKey.S);
+            AddCommand(CommandsEnum.SearchCourse, ConsoleKey.C);
+            AddCommand(CommandsEnum.SearchAgain, ConsoleKey.A);
         }
 
-        public static string CommandText(commandsEnum cmd)
+        public void AddCommand(CommandsEnum e, ConsoleKey key)
         {
-            return pageManager.commandsDict[cmd];
+            if (commandsDict == null || commandsDict.Keys.Contains(e) || commandsDict.Values.Contains(key))
+                return;
+
+            commandsDict.Add(e, key);
+        }
+
+        public void removeCommand(CommandsEnum e)
+        {
+            if (commandsDict == null || !commandsDict.Keys.Contains(e))
+                return;
+
+            commandsDict.Remove(e);
+        }
+
+        public void updateCommand(CommandsEnum e, ConsoleKey newKey)
+        {
+            if (commandsDict == null || !commandsDict.Keys.Contains(e) || !commandsDict.Values.Contains(newKey))
+                return;
+
+            commandsDict[e] = newKey;
+        }
+
+        public string DisplayCommand(CommandsEnum e)
+        {
+            return String.Format("[Alt+{0}]{1}", commandsDict[e].ToString(), e.GetDescription());
+        }
+
+        public static string CommandText(CommandsEnum cmd)
+        {
+            return pageManager.DisplayCommand(cmd);
         }
 
         public static void Load(Page pageToLoad, bool clearScreen = true) // Sets clearScreen to true by default, so the argument is only needed when appending. 
         {
-            pageManager.inputString = new List<char>();
             if (clearScreen)
                 Console.Clear();
             
@@ -66,7 +86,7 @@ namespace StumpLugApp.UI
             pageManager.activePage.ToScreen(); //Display stuff to the screen.
         }
 
-        public static bool PageContainsCommand(commandsEnum cmd)
+        public static bool PageContainsCommand(CommandsEnum cmd)
         {
             return pageManager.activePage.commands.Contains(cmd);
         }
@@ -85,11 +105,11 @@ namespace StumpLugApp.UI
             if (!input.isAltKeyPressed)
                 return;
 
-            if (PageContainsCommand(commandsEnum.Exit) && input.Key == ConsoleKey.X) PageManager.pageManager.Exit();
-            if (PageContainsCommand(commandsEnum.MainMenu) && input.Key == ConsoleKey.M) pageManager.activePage.NavigateTo(new MainMenuPage());
-            if (PageContainsCommand(commandsEnum.SearchStudent) && input.Key == ConsoleKey.S) pageManager.activePage.NavigateTo(new SearchStudentPage());
-            if (PageContainsCommand(commandsEnum.SearchCourse) && input.Key == ConsoleKey.C) pageManager.activePage.NavigateTo(new SearchCoursePage());
-            if (PageContainsCommand(commandsEnum.SearchAgain) && input.Key == ConsoleKey.A) PageManager.Load(PageManager.pageManager.activePage);
+            if (PageContainsCommand(CommandsEnum.Exit) && input.Key == pageManager.commandsDict[CommandsEnum.Exit]) PageManager.pageManager.Exit();
+            if (PageContainsCommand(CommandsEnum.MainMenu) && input.Key == pageManager.commandsDict[CommandsEnum.MainMenu]) pageManager.activePage.NavigateTo(new MainMenuPage());
+            if (PageContainsCommand(CommandsEnum.SearchStudent) && input.Key == pageManager.commandsDict[CommandsEnum.SearchStudent]) pageManager.activePage.NavigateTo(new SearchStudentPage());
+            if (PageContainsCommand(CommandsEnum.SearchCourse) && input.Key == pageManager.commandsDict[CommandsEnum.SearchCourse]) pageManager.activePage.NavigateTo(new SearchCoursePage());
+            if (PageContainsCommand(CommandsEnum.SearchAgain) && input.Key == pageManager.commandsDict[CommandsEnum.SearchAgain]) PageManager.Load(PageManager.pageManager.activePage);
         }
 
         public void Exit()
@@ -109,5 +129,19 @@ namespace StumpLugApp.UI
 
             return false;
         }
+    }
+
+    public enum CommandsEnum
+    {
+        [Description("Exit")]
+        Exit,
+        [Description("Main Menu")]
+        MainMenu,
+        [Description("Search Student")]
+        SearchStudent,
+        [Description("search Course")]
+        SearchCourse,
+        [Description("Search Again")]
+        SearchAgain
     }
 }

@@ -15,14 +15,17 @@ namespace StumpLugApp.UI
         protected List<char> inputString; //stores a collection of char reads from console.In
       
         public string pageTitle { get; set; }
-        public List<commandsEnum> commands { get; set; }
+        public List<CommandsEnum> commands { get; set; }
         
         public string content { get; set; }
 
+        /// <summary>
+        /// initializes inputString, commands
+        /// </summary>
         public virtual void OnLoad()
         {
             inputString = new List<char>();
-            commands = new List<commandsEnum>();
+            commands = new List<CommandsEnum>();
         }
 
         public virtual void ToScreen(bool clearScreen = true, bool canRefreshPage = true)
@@ -38,7 +41,7 @@ namespace StumpLugApp.UI
             Console.WriteLine(horzRule);
 
             //write formatted commands to console
-            foreach (commandsEnum c in commands)
+            foreach (CommandsEnum c in commands)
             {
                 if (c != commands.Last())
                     Console.Write(String.Format("{0} | ", PageManager.CommandText(c)));
@@ -98,7 +101,7 @@ namespace StumpLugApp.UI
 
         public virtual bool OnClose()
         {
-            commands = new List<commandsEnum>();
+            commands = new List<CommandsEnum>();
             return true;
         }
 

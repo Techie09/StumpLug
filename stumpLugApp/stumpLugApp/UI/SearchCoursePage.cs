@@ -12,22 +12,28 @@ namespace StumpLugApp.UI
     {
         private const string columnFormat = "{0,10}|{1}";
 
+        /// <summary>
+        /// calls base.OnLoad() and sets Page Title and content
+        /// </summary>
         public override void OnLoad()
         {
+            base.OnLoad();
             pageTitle = "Course Search";
             content = "Search for a Course: ";
-            base.OnLoad();
         }
 
+        /// <summary>
+        /// Displays all the courses found.
+        /// </summary>
         public override void DisplayResults()
         {
             StringBuilder contentBuilder = new StringBuilder();
             contentBuilder.AppendLine(content);
-            contentBuilder.AppendLine(String.Format(columnFormat, "CourseID", "Name"));
+            contentBuilder.AppendLineFormat(columnFormat, "CourseID", "Name");
             var courses = Course.SearchCoursesGeneral(searchInput);
-            foreach (Course c in courses)
+            foreach (Course course in courses)
             {
-                contentBuilder.AppendLine(String.Format(columnFormat, c.Id, c.Name));
+                contentBuilder.AppendLineFormat(columnFormat, course.id, course.name);
             }
             Console.WriteLine(contentBuilder.ToString());
             //base.DisplayResults();
