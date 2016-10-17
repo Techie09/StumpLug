@@ -54,5 +54,10 @@ namespace StumpLugApp.UI
         {
             get { return (KeyInfo.Modifiers & ConsoleModifiers.Control) != 0; }
         }
+
+        public bool IsKeyPressed(ConsoleKey key)
+        {
+            return Key == key;
+        }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static StumpLugApp.UI.PageManager;
 
 namespace StumpLugApp.UI
 {
@@ -14,7 +13,7 @@ namespace StumpLugApp.UI
         public override void OnLoad()
         {
             base.OnLoad();
-            commands = new List<commandsEnum>() { };// { commandsEnum.MainMenu, commandsEnum.Exit };
+            commands = new List<CommandsEnum>() { };
             Console.CursorVisible = true;
         }
 
@@ -43,7 +42,7 @@ namespace StumpLugApp.UI
         public virtual void DisplayResults()
         {
             pageTitle = String.Format("{0}{1}", "Search Results for: ", searchInput);
-            commands = new List<commandsEnum>() { commandsEnum.SearchAgain, commandsEnum.MainMenu, commandsEnum.Exit };
+            commands = new List<CommandsEnum>() { CommandsEnum.SearchAgain, CommandsEnum.MainMenu, CommandsEnum.Exit };
             Console.CursorVisible = false;
             base.ToScreen(canRefreshPage: false);
         }

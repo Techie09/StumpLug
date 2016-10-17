@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static StumpLugApp.UI.PageManager;
 
 namespace StumpLugApp.UI
 {
@@ -24,10 +23,10 @@ namespace StumpLugApp.UI
             StringBuilder contentBuilder = new StringBuilder();
             contentBuilder.AppendLine(content);
             contentBuilder.AppendLine(String.Format(columnFormat, "CourseID", "Name"));
-            var courses = Course.SearchCoursesGeneral(searchInput);
+            var courses = Courses.SearchCoursesGeneral(searchInput);
             foreach (Course c in courses)
             {
-                contentBuilder.AppendLine(String.Format(columnFormat, c.Id, c.Name));
+                contentBuilder.AppendLine(String.Format(columnFormat, c.id, c.name));
             }
             Console.WriteLine(contentBuilder.ToString());
             //base.DisplayResults();

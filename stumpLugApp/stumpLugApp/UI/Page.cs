@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static StumpLugApp.UI.PageManager;
 
 namespace StumpLugApp.UI
 {
@@ -15,14 +14,14 @@ namespace StumpLugApp.UI
         protected List<char> inputString; //stores a collection of char reads from console.In
       
         public string pageTitle { get; set; }
-        public List<commandsEnum> commands { get; set; }
+        public List<CommandsEnum> commands { get; set; }
         
         public string content { get; set; }
 
         public virtual void OnLoad()
         {
             inputString = new List<char>();
-            commands = new List<commandsEnum>();
+            commands = new List<CommandsEnum>();
         }
 
         public virtual void ToScreen(bool clearScreen = true, bool canRefreshPage = true)
@@ -32,13 +31,13 @@ namespace StumpLugApp.UI
 
             Console.Title = String.Format("{0} | {1}", appTitle, pageTitle);
 
-            //Name of Page written to Console
+            //name of Page written to Console
             Console.WriteLine(horzRule);
             Console.WriteLine(pageTitle);
             Console.WriteLine(horzRule);
 
             //write formatted commands to console
-            foreach (commandsEnum c in commands)
+            foreach (CommandsEnum c in commands)
             {
                 if (c != commands.Last())
                     Console.Write(String.Format("{0} | ", PageManager.CommandText(c)));
@@ -59,16 +58,16 @@ namespace StumpLugApp.UI
         public virtual void Refresh()
         {
             //Get Input and process input
-            InputArgs args = GetInput(false);
+            InputArgs args = PageManager.GetInput(false);
 
             //Navigate to a different page?
-            HandleNavigationInput(args);
+            PageManager.HandleNavigationInput(args);
 
             //handle input normally
-            pageManager.activePage.HandleInput(args);
+            PageManager.pageManager.activePage.HandleInput(args);
 
             //output
-            pageManager.activePage.ToScreen();
+            PageManager.pageManager.activePage.ToScreen();
         }
 
         public virtual void NavigateTo(Page page, bool clearScreen = true)
@@ -98,7 +97,7 @@ namespace StumpLugApp.UI
 
         public virtual bool OnClose()
         {
-            commands = new List<commandsEnum>();
+            commands = new List<CommandsEnum>();
             return true;
         }
 

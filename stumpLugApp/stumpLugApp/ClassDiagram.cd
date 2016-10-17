@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="UI ELements">
+    <Position X="0.5" Y="0.5" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Data Layer">
+    <Position X="6.5" Y="4" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Business Objects">
+    <Position X="6.5" Y="0.75" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="StumpLugApp.UI.InputArgs" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAABAAAAAAQAAAAAAAAAAAAAABQQAAAAEAAAAAA=</HashCode>
+      <FileName>UI\InputArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.UI.MainMenuPage" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\MainMenuPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.UI.Page" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAJAAAAAAACAACACAAAAEAECAAIAAAAIAAA=</HashCode>
+      <FileName>UI\Page.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.UI.PageManager" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="StumpLugApp.UI.PageManager.CommandsEnum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UI\PageManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAgAAIAiAAAAQAAAAAAAAgABAAAQAAICAAAAAAAEA=</HashCode>
+      <FileName>UI\PageManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.UI.SearchCoursePage" Collapsed="true">
+    <Position X="3.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAACAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>UI\SearchCoursePage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.UI.SearchPage" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAABAAAAAAAAAAAAKAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>UI\SearchPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.UI.SearchStudentPage" Collapsed="true">
+    <Position X="2" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAACAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>UI\SearchStudentPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.UI.ViewStudentPage" Collapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAEAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\ViewStudentPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Data.CourseArgs" Collapsed="true">
+    <Position X="5.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQgAAABAAAAAAAAAAAAAAAAAIQAAAAAAAAA=</HashCode>
+      <FileName>Data\CourseArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Data.EnrolledCourseArgs" Collapsed="true">
+    <Position X="7.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAIAAAAAAAAAAAAAQAAAAAAAEAAAA=</HashCode>
+      <FileName>Data\EnrolledCourseArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Data.ObjectCache" Collapsed="true">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAACAAAAAA=</HashCode>
+      <FileName>Data\ObjectCache.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Data.StudentArgs" Collapsed="true">
+    <Position X="7.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgBAAAAAAAAAEAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Data\StudentArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Bus.Course" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAACAAAEAAgAQAIAAEAAAASAAABAAAQABAAAAAAAAAA=</HashCode>
+      <FileName>Bus\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Bus.Courses" Collapsed="true">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bus\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Bus.EnrolledCourse" Collapsed="true">
+    <Position X="7.5" Y="3" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="StumpLugApp.Bus.EnrolledCourse.LetterGrade" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Bus\EnrolledCourse.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="StumpLugApp.Bus.EnrolledCourse.SemesterType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Bus\EnrolledCourse.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAEIAAAAAAAAAAAAAAAIAAAAEEABAA=</HashCode>
+      <FileName>Bus\EnrolledCourse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Bus.Student" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAEAEAAAAAEAAAAAAAIAAAABAAAAIAAAAABAAAAg=</HashCode>
+      <FileName>Bus\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StumpLugApp.Bus.Students" Collapsed="true">
+    <Position X="7.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bus\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="StumpLugApp.Bus.CourseType" Collapsed="true">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAICAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bus\Course.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

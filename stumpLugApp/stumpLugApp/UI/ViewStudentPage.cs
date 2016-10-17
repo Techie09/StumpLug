@@ -29,15 +29,15 @@ namespace StumpLugApp.UI
             contentBuilder.AppendLine(horzRule);
             contentBuilder.AppendLine("Courses");
             contentBuilder.AppendLine(horzRule);
-            contentBuilder.AppendFormat(columnFormat, "CourseNumber", "CourseName", "CourseType", "Credits", "Grade", "Semester", "Year", Environment.NewLine);
+            contentBuilder.AppendFormat(columnFormat, EnrolledCourse.CourseID, Course.Name, Course.CourseType, Course.Credits, EnrolledCourse.Grade, EnrolledCourse.Semester, EnrolledCourse.Year, Environment.NewLine);
             foreach(EnrolledCourse ec in student.Courses)
             {
-                Course c = new Course(ObjectCache.CourseRootList.FirstOrDefault(cs => cs.CourseNumber == ec.CourseNumber));
-                contentBuilder.AppendFormat(columnFormat, c.Number, c.Name , c.CourseType, c.Credits, ec.Grade, ec.Semester.ToString(), ec.Year, Environment.NewLine);
+                Course c = new Course(ObjectCache.CourseRootList.FirstOrDefault(cs => cs.CourseNumber == ec.courseID));
+                contentBuilder.AppendFormat(columnFormat, c.number, c.name , c.courseType, c.credits, ec.grade, ec.semester.ToString(), ec.year, Environment.NewLine);
             }
             content = contentBuilder.ToString();
 
-            commands = new List<PageManager.commandsEnum> { PageManager.commandsEnum.SearchStudent, PageManager.commandsEnum.MainMenu, PageManager.commandsEnum.Exit };
+            commands = new List<CommandsEnum> { CommandsEnum.SearchStudent, CommandsEnum.MainMenu, CommandsEnum.Exit };
         }
     }
 }

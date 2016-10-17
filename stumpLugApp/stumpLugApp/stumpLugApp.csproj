@@ -76,7 +76,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>stumpLugApp_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -137,7 +138,6 @@
     <None Include="Properties\app.manifest" />
     <None Include="Resource\CourseData.json" />
     <None Include="Resource\students.json" />
-    <None Include="stumpLugApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -157,6 +157,7 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

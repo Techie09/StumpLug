@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static StumpLugApp.UI.PageManager;
 
 namespace StumpLugApp.UI
 {
@@ -44,8 +43,8 @@ namespace StumpLugApp.UI
                 if (students.Count == 1)
                 {
                     Console.Write("Would you like to view the Student in detail?[Y/N]: ");
-                    var args = Console.ReadKey();
-                    if (args.Key == ConsoleKey.Y)
+                    var cki = Console.ReadKey();
+                    if (cki.Key == ConsoleKey.Y)
                     {
                         //user wants student detail
                         page.student = students.First();
@@ -54,7 +53,7 @@ namespace StumpLugApp.UI
                     else
                     {
                         //user wants to navigate to different page
-                        HandleNavigationInput(new InputArgs(args));
+                        PageManager.HandleNavigationInput(new InputArgs(cki));
                     }
                 }
                 else if (students.Count > 1)
@@ -81,7 +80,7 @@ namespace StumpLugApp.UI
                 base.DisplayResults();
                 while (true)
                 {
-                    HandleNavigationInput(GetInput(true));
+                    PageManager.HandleNavigationInput(PageManager.GetInput(true));
                 }
             }
            
