@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-/// <summary>
-/// represents the UI Layer
-/// </summary>
-/// <see cref="https://github.com/Techie09/StumpLug/wiki/User-Interface"/>
+// https://github.com/Techie09/StumpLug/wiki/User-Interface-Layer
 namespace StumpLugApp.UI
 {
     /// <summary>
     /// Controller for Navigating between Pages.
     /// </summary>
-    /// <see cref="https://github.com/Techie09/StumpLug/wiki/Page-Manager"/>
+    /// https://github.com/Techie09/StumpLug/wiki/Page-Manager
     public class PageManager
     {
         #region Members
@@ -30,7 +24,7 @@ namespace StumpLugApp.UI
         
         private Page m_activePage = null;
         /// <summary>
-        /// <seealso cref="Page"/> that the Controller is actively controlling.
+        /// <see cref="Page"/> that the Controller is actively controlling.
         /// </summary>
         public Page activePage
         {
@@ -93,7 +87,7 @@ namespace StumpLugApp.UI
         #region Static Methods
         /// <summary>
         /// Loads a specific Page.
-        /// <list>PageManager.activePage is set and the activePage is loaded</list>
+        /// <para>PageManager.activePage is set and the activePage is loaded</para>
         /// </summary>
         /// <param name="pageToLoad">A Page for the Page Manager to load</param>
         /// <param name="clearScreen"></param>
@@ -138,17 +132,14 @@ namespace StumpLugApp.UI
         /// <returns></returns>
         public static InputArgs GetInput(bool displayInput = true)
         {
-            InputArgs args = new InputArgs();
-            args.KeyInfo = Console.ReadKey(displayInput);
-
-            return args;
+            return new InputArgs(Console.ReadKey(displayInput));
         }
 
         /// <summary>
         /// Handles Page Navigations. Requires pressing Alt and then validates command exists on Page.
         /// </summary>
         /// <param name="input">represents data collected from Console input</param>
-        /// <seealso cref="InputArgs"/> 
+        /// <see cref="InputArgs"/> 
         public static void HandleNavigationInput(InputArgs input)
         {
             //Alt key must be pressed
@@ -170,14 +161,29 @@ namespace StumpLugApp.UI
     /// </summary>
     public enum CommandsEnum
     {
+        /// <summary>
+        /// represents the Exit Command
+        /// </summary>
         [Description("Exit")]
         Exit,
+        /// <summary>
+        /// Represents the Main Menu Command
+        /// </summary>
         [Description("Main Menu")]
         MainMenu,
+        /// <summary>
+        /// represents the Search Student Command
+        /// </summary>
         [Description("Search Student")]
         SearchStudent,
+        /// <summary>
+        /// represents the Search Course Command
+        /// </summary>
         [Description("Search Course")]
         SearchCourse,
+        /// <summary>
+        /// represents the Search Again command
+        /// </summary>
         [Description("Search Again")]
         SearchAgain
     }

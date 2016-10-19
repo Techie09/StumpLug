@@ -1,24 +1,21 @@
 ﻿using StumpLugApp.Data;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-/// <summary>
-/// represents the Business Object Layer
-/// </summary>
-/// <see cref="https://github.com/Techie09/StumpLug/wiki/Business-Object-Layer"/>
+// https://github.com/Techie09/StumpLug/wiki/Business-Object-Layer
 namespace StumpLugApp.Bus
 {
     /// <summary>
     /// Represents a <see cref="Course"/> a <see cref="Student"/> is Enrolled in.  
     /// </summary>
-    /// /// <see cref="https://github.com/Techie09/StumpLug/wiki/EnrolledCourse"/>
+    /// https://github.com/Techie09/StumpLug/wiki/EnrolledCourse
     public partial class EnrolledCourse
     {
         #region Members
+        /// <summary>
+        /// represents the <see cref="string"/> "Info"
+        /// </summary>
         public static string Info = "Info";
         private Course m_Info;
         /// <summary>
@@ -30,6 +27,9 @@ namespace StumpLugApp.Bus
             set { m_Info = value; }
         }
 
+        /// <summary>
+        /// represents the <see cref="string"/> "Course ID"
+        /// </summary>
         public static string CourseID = "Course ID";
         private int m_courseID;
         /// <summary>
@@ -41,6 +41,9 @@ namespace StumpLugApp.Bus
             set { m_courseID = value; }
         }
 
+        /// <summary>
+        /// represents the <see cref="string"/> "Semester"
+        /// </summary>
         public static string Semester = "Semester";
         private SemesterType m_semester;
         /// <summary>
@@ -53,6 +56,9 @@ namespace StumpLugApp.Bus
             set { m_semester = value; }
         }
 
+        /// <summary>
+        /// represents the <see cref="string"/> "Year"
+        /// </summary>
         public static string Year = "Year";
         private int m_year;
         /// <summary>
@@ -64,6 +70,9 @@ namespace StumpLugApp.Bus
             set { m_year = value; }
         }
 
+        /// <summary>
+        /// represents the <see cref="string"/> "Grade"
+        /// </summary>
         public static string Grade = "Grade";
         private LetterGrade m_grade;
         /// <summary>
@@ -116,10 +125,19 @@ namespace StumpLugApp.Bus
     /// </summary>
     public enum SemesterType
     {
+        /// <summary>
+        /// represents fall semester
+        /// </summary>
         [Description("Fall")]
         FALL,
+        /// <summary>
+        /// represents spring(winter) semester
+        /// </summary>
         [Description("Spring")]
         SPRING,
+        /// <summary>
+        /// represents summer semester
+        /// </summary>
         [Description("Summer")]
         SUMMER
     }
@@ -129,18 +147,39 @@ namespace StumpLugApp.Bus
     /// </summary>
     public enum LetterGrade
     {
+        /// <summary>
+        /// represents letter grade A
+        /// </summary>
         [Description("A")]
         A,
+        /// <summary>
+        /// represents letter grade B
+        /// </summary>
         [Description("B")]
         B,
+        /// <summary>
+        /// represents letter grade C
+        /// </summary>
         [Description("C")]
         C,
+        /// <summary>
+        /// represents letter grade D
+        /// </summary>
         [Description("D")]
         D,
+        /// <summary>
+        /// represents letter grade F
+        /// </summary>
         [Description("F")]
         F,
+        /// <summary>
+        /// represents incomplete
+        /// </summary>
         [Description("Incomplete")]
         I,
+        /// <summary>
+        /// represents withdrown
+        /// </summary>
         [Description("Withdraw")]
         W
     }

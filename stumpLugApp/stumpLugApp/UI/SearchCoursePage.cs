@@ -1,16 +1,21 @@
 ﻿using StumpLugApp.Bus;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
+// https://github.com/Techie09/StumpLug/wiki/User-Interface-Layer
 namespace StumpLugApp.UI
 {
+    /// <summary>
+    /// represents Course Search
+    /// </summary>
+    /// https://github.com/Techie09/StumpLug/wiki/SearchCoursePage
     class SearchCoursePage : SearchPage
     {
         private const string columnFormat = "{0,10}|{1}";
 
+        /// <summary>
+        /// override of OnLoad to set page title and content.
+        /// </summary>
         public override void OnLoad()
         {
             pageTitle = "Course Search";
@@ -18,6 +23,9 @@ namespace StumpLugApp.UI
             base.OnLoad();
         }
 
+        /// <summary>
+        /// override Display Results to show Course information found
+        /// </summary>
         public override void DisplayResults()
         {
             StringBuilder contentBuilder = new StringBuilder();
@@ -29,7 +37,6 @@ namespace StumpLugApp.UI
                 contentBuilder.AppendLine(String.Format(columnFormat, c.id, c.name));
             }
             Console.WriteLine(contentBuilder.ToString());
-            //base.DisplayResults();
         }
     }
 }

@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-/// <summary>
-/// represents the Business Object Layer
-/// </summary>
-/// <see cref="https://github.com/Techie09/StumpLug/wiki/Business-Object-Layer"/>
+// https://github.com/Techie09/StumpLug/wiki/Business-Object-Layer
 namespace StumpLugApp.Bus
 {
     /// <summary>
     /// Represents a Course that can be taken
     /// </summary>
-    /// <see cref="https://github.com/Techie09/StumpLug/wiki/Course"/>
+    /// https://github.com/Techie09/StumpLug/wiki/Course
     public partial class Course
     {
         #region Members
+        /// <summary>
+        /// represents the <see cref="string"/> "ID"
+        /// </summary>
         public static string ID = "ID";
         private string m_id;
         /// <summary>
         /// a <see cref="string"/> representing the unique course Identity
-        /// <list>Formatted as (Department)-(<see cref="number"/>)</list>
+        /// <para>Formatted as (Department)-(<see cref="number"/>)</para>
         /// </summary>
         public string id
         {
@@ -28,6 +28,9 @@ namespace StumpLugApp.Bus
             set { m_id = value; }
         }
 
+        /// <summary>
+        /// represents the <see cref="string"/> "Number"
+        /// </summary>
         public static string Number = "Number";
         private string m_number;
         /// <summary>
@@ -39,6 +42,9 @@ namespace StumpLugApp.Bus
             set { m_number = value; }
         }
 
+        /// <summary>
+        /// represents the <see cref="string"/> "Name"
+        /// </summary>
         public static string Name = "Name";
         private string m_name;
         /// <summary>
@@ -50,6 +56,9 @@ namespace StumpLugApp.Bus
             set { m_name = value; }
         }
 
+        /// <summary>
+        /// represents the <see cref="string"/> "Credits"
+        /// </summary>
         public static string Credits = "Credits";
         private string m_credits;
         /// <summary>
@@ -61,12 +70,15 @@ namespace StumpLugApp.Bus
             set { m_credits = value; }
         }
 
+        /// <summary>
+        /// represents the <see cref="string"/> "Course Type"
+        /// </summary>
         public static string CourseType = "Course Type";
         private string m_courseType;
         /// <summary>
         /// a <see cref="string"/> representing the type of course.
         /// </summary>
-        /// <seealso cref=""/>
+        /// <see cref="CourseTypes"/>
         public string courseType
         {
             get { return m_courseType; }
@@ -79,7 +91,7 @@ namespace StumpLugApp.Bus
         /// Initializes a <see cref="Course"/> using the <see cref="Course.Deserializer(CourseArgs)"/> Method
         /// </summary>
         /// <param name="args">represents data needed to populate a <see cref="Course"/></param>
-        /// <seealso cref="CourseArgs"/>
+        /// <see cref="CourseArgs"/>
         public Course(CourseArgs args)
         {
             Deserializer(args);
@@ -89,7 +101,7 @@ namespace StumpLugApp.Bus
         /// Copies <see cref="CourseArgs"/> data into a <see cref="Course"/> Object
         /// </summary>
         /// <param name="data">represents data needed to populate a <see cref="Course"/></param>
-        /// <seealso cref="CourseArgs"/>
+        /// <see cref="CourseArgs"/>
         public void Deserializer(CourseArgs data)
         {
             this.id = string.Format("{0}-{1}",data.DepartmentName, data.CourseNumber);
@@ -110,8 +122,7 @@ namespace StumpLugApp.Bus
         /// <summary>
         /// Returns Course with specific matching id.
         /// </summary>
-        /// <param name="courses"></param>
-        /// <param name="idFind"></param>
+        /// <param name="idFind">a string value to search against strings</param>
         /// <returns></returns>
         public static Course GetCourseById(string idFind)
         {
@@ -145,7 +156,7 @@ namespace StumpLugApp.Bus
         /// Initializes <see cref="courses"/> using a <see cref="List{T}"/> of <see cref="CourseArgs"/> objects
         /// </summary>
         /// <param name="args">represents data needed to populate a <see cref="List{T}"/> of <see cref="Course"/> objects</param>
-        /// <seealso cref="courses"/>
+        /// <see cref="courses"/>
         public Courses(List<CourseArgs> args)
         {
             //Make sure courses is initialized. 
@@ -187,12 +198,21 @@ namespace StumpLugApp.Bus
     /// Describes the course types available
     /// </summary>
     /// <see cref="Course.courseType"/>
-    public enum CourseType
+    public enum CourseTypes
     {
+        /// <summary>
+        /// represents Core type of courses
+        /// </summary>
         [Description("Core")]
         CORE,
+        /// <summary>
+        /// represents General education type of courses
+        /// </summary>
         [Description("General Education")]
         GEN_ED,
+        /// <summary>
+        /// represents Elective type of courses
+        /// </summary>
         [Description("Elective")]
         ELECTIVE
     }
