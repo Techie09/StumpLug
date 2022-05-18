@@ -1,3 +1,5 @@
+This Repository has been archived and is no longer being maintained.
+
 # STARS Release Notes Section
 Version 1.0.0.0
 
